@@ -6,7 +6,7 @@ import os
 def hello(event, context):
     client = boto3.client('kms')
 
-    public_key_result = client.get_public_key(KeyId='arn:aws:kms:eu-central-1:129012979237:key/e19d3f84-24d2-40bf-b8e8-d03e07ae2de0', GrantTokens=[])
+    public_key_result = client.get_public_key(KeyId=os.environ['key_arn'], GrantTokens=[])
 
     sign_response = client.sign(
         KeyId=os.environ['key_arn'],
